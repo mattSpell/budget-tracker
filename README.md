@@ -1,7 +1,7 @@
 Budget Tracker
 ==============
 
-This is a Command-Line_Interface app that tracks your budget for you.
+This is a Command-Line-Interface app that tracks your budget for you.
 ## Installation Instructions
 1. Clone this Repo
 2. Profit
