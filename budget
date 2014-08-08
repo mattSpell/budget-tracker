@@ -8,6 +8,7 @@ require_relative 'lib/router'
 def clean_gets
   (gets || "").chomp
 end
+puts IO.readlines('budge.txt')
 
 bank_controller = BankController.new()
 bank_controller.intro
