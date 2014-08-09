@@ -4,7 +4,6 @@ class CreateGoals < ActiveRecord::Migration
       t.string :name
       t.integer :amount
       t.references :banks
-
     end
   end
 end

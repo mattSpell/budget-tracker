@@ -7,11 +7,8 @@ class BankController
       puts "Amount must be numbers"
       exit
     end
-
     bank = Bank.create(balance: balance)
-
-    # puts bank.errors.full_messages
     puts "Your new account balance is #{bank.balance}"
-
+    Router.navigate_goals_menu()
   end
 end
