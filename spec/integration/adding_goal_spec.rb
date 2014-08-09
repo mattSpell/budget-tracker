@@ -8,8 +8,8 @@ RSpec.describe "Adding monthly budget categories and amounts", :integration do
       expect(Goal.last.name).to include("Food")
       expect(Goal.last.amount).to eql 100
     end
-    it "should print a success message" do
-      expect(output).to include("The Food category has been added to the budget with an amount of $100.")
+    it "should print a success message with the correct remaining balance" do
+      expect(output).to include("The Food category has been added with an amount of $100. You now have $900 left over.")
     end
   end
 
@@ -30,9 +30,4 @@ RSpec.describe "Adding monthly budget categories and amounts", :integration do
     end
   end
 
-  # context "updates bank balance" do
-  #   let!(:output){ run_budget_with_input("1000", "y", "Food", "100") }
-  #   expect(Bank.last.balance).to eql 900
-  #
-  # end
 end

@@ -8,16 +8,26 @@ class GoalsController
       puts "Amount can't be blank"
     end
     goal = Goal.create(name: name, amount: amount.to_i)
+    new_balance = Goal.subtract_goal(amount.to_i)
     if goal.new_record?
       puts goal.errors.full_messages
     else
-      puts "The #{goal.name} category has been added to the budget with an amount of $#{goal.amount}."
+      puts "The #{goal.name} category has been added with an amount of $#{goal.amount}. You now have $#{new_balance} left over."
     end
   end
 
   def self.list
     puts "=============="
-    puts " Goals List"
+    puts "  Goal List"
+    puts "=============="
+    goals = Goal.all
+    goals.each_with_index do |goal, index|
+      puts "#{index + 1}. #{goal.name} $#{goal.amount}"
+    end
+    Router.navigate_goals_menu
+  end
+
+  def self.view(goal_number)
 
   end
 end

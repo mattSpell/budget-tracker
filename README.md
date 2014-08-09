@@ -12,7 +12,7 @@ Run:
 ./budget
 ~~~
 
-Follow the on-screen prompts to enter your categories, goals and credits/debits.
+Follow the on-screen prompts to enter your income, categories, goals and credits/debits.
 
 ## Technologies/Dependencies
 -Ruby 2.1.1

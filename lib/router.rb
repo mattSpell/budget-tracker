@@ -1,12 +1,14 @@
 class Router
-  def self.navigate_goals_menu()
-    puts "Would you like to add a budget category name? (y)es or type (n)o to view a list of your goals."
+  def self.navigate_goals_menu
+    puts "Would you like to add a budget category name? (y)es or (n)o to view a list of your goals. You can also enter the category number to view it."
     command = clean_gets
     case command
     when "y"
       GoalsController.add
     when "n"
-      GoalsController.list()
+      GoalsController.list
+    when /\d+/
+      GoalsController.view(command.to_i)
     else
       puts "I don't know the '#{command}' command."
     end
