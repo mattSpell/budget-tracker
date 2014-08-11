@@ -7,9 +7,10 @@ RSpec.describe "Adding monthly budget categories and amounts", :integration do
     it "should save the record accurately" do
       expect(Goal.last.name).to include("Food")
       expect(Goal.last.amount).to eql 100
+      expect(Goal.last.bank_id).to eql Bank.last.id
     end
     it "should print a success message with the correct remaining balance" do
-      expect(output).to include("The Food category has been added with an amount of $100. You now have $900 left over.")
+      expect(output).to include("The Food category has been added with an amount of $100.")
     end
   end
 

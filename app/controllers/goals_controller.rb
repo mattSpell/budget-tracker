@@ -7,12 +7,11 @@ class GoalsController
     if amount == ""
       puts "Amount can't be blank"
     end
-    goal = Goal.create(name: name, amount: amount.to_i)
-    new_balance = Goal.subtract_goal(amount.to_i)
+    goal = Goal.create(name: name, amount: amount.to_i, bank_id: Bank.last.id)
     if goal.new_record?
       puts goal.errors.full_messages
     else
-      puts "The #{goal.name} category has been added with an amount of $#{goal.amount}. You now have $#{new_balance} left over."
+      puts "The #{goal.name} category has been added with an amount of $#{goal.amount}."
       Router.navigate_actuals_menu
     end
   end
@@ -21,7 +20,7 @@ class GoalsController
     puts "=============="
     puts "  Goal List"
     puts "=============="
-    goals = Goal.all
+    goals = GoalsController.allgoals
     goals.each_with_index do |goal, index|
       puts "#{index + 1}. #{goal.name} $#{goal.amount}"
     end
@@ -35,19 +34,30 @@ class GoalsController
   end
 
   def self.view(goal_number)
-    puts "==============="
-    puts "Transacion List"
-    puts "==============="
-    transactions = Actual.all
+    goal = GoalsController.allgoals[goal_number - 1]
+    if goal.nil?
+      puts "Sorry, #{goal_number} doesn't exist."
+    else
+      puts "GOAL: #{goal.name} AMOUNT: #{goal.amount}"
+    end
+    puts "============================="
+    puts "Transacion List For This Goal"
+    puts "============================="
+    transactions = Actual.where({goal_id: goal.id})
     transactions.each_with_index do |actual, index|
       puts "#{index + 1}. #{actual.name} $#{actual.amount}"
     end
     puts "Would you like to add a transaction? (y)es or (n)o to view goals."
     command = clean_gets
     if command == "y"
-      ActualsController.add
+      ActualsController.add(goal)
     else
       Router.navigate_goals_menu
     end
   end
+
+  def self.allgoals
+    @goals ||= Goal.all
+  end
+
 end

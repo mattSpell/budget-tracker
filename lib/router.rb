@@ -17,7 +17,13 @@ class Router
     command = clean_gets
     case command
     when "y"
-      ActualsController.add
+      puts "What is the number of the budget category that this transaction belongs to?"
+      response = clean_gets
+      if /\A[+-]?\d+\Z/.match response
+        ActualsController.add(response)
+      else
+        puts "I don't know the #{response} command."
+      end
     when "n"
       ActualsController.list
     when "g"

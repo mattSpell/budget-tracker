@@ -1,12 +1,13 @@
 RSpec.describe "Adding transactions and amounts", :integration do
   context "valid input" do
-    let!(:output){ run_budget_with_input("1000", "y", "Food", "100", "y", "Maffiaoza's", "20") }
+    let!(:output){ run_budget_with_input("1000", "y", "Food", "100", "y", "1", "Maffiaoza's", "20") }
     it "should add a record" do
       expect(Actual.count).to eql 1
     end
     it "should save the record accurately" do
       expect(Actual.last.name).to include("Maffiaoza's")
       expect(Actual.last.amount).to eql 20
+      expect(Actual.last.goal_id).to eql Goal.last.id
     end
     it "should print a success message with the correct remaining balance" do
       expect(output).to include("Maffiaoza's has been added with an amount of $20. Your remaining balance for Food is $80.")

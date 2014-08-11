@@ -1,6 +1,6 @@
 class Actual < ActiveRecord::Base
-  has_one :goal
   validates_presence_of :name, :amount
+  belongs_to :goal
 
   def self.subtract_expenditure(amount)
     current_goal = Goal.last.amount

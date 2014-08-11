@@ -3,7 +3,7 @@ class CreateActuals < ActiveRecord::Migration
     create_table :actuals do |t|
       t.string :name
       t.integer :amount
-      t.references :goals
+      t.belongs_to :goals
     end
   end
 end
