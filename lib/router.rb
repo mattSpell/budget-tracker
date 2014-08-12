@@ -1,5 +1,13 @@
 class Router
   def self.navigate_goals_menu
+    puts "Your current account balance is $#{Actual.convert_to_dollars(Bank.last.balance)}"
+    puts "=============="
+    puts "  Goal List"
+    puts "=============="
+    goals = GoalsController.allgoals
+    goals.each_with_index do |goal, index|
+      puts "#{index + 1}. #{goal.name} $#{Actual.convert_to_dollars(goal.amount)}"
+    end
     puts "Would you like to add a budget category name? (y)es or (n)o to view a list of your goals."
     command = clean_gets
     case command
@@ -22,7 +30,7 @@ class Router
       puts "=============="
       goals = GoalsController.allgoals
       goals.each_with_index do |goal, index|
-        puts "#{index + 1}. #{goal.name} $#{goal.amount}"
+        puts "#{index + 1}. #{goal.name} $#{Actual.convert_to_dollars(goal.amount)}"
       end
       puts "What is the number of the budget category that this transaction belongs to?"
       response = clean_gets

@@ -6,6 +6,7 @@ ruby '2.1.1'
 gem 'activerecord', require: 'active_record'
 gem 'rake'
 gem 'sqlite3'
+gem 'money'
 
 group :test do
   gem 'database_cleaner'

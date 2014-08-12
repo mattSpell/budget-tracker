@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'yaml'
+require 'money'
 Bundler.require(:default)
 
 Dir["./app/**/*.rb"].each { |f| require f }

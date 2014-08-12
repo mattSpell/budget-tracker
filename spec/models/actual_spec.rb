@@ -6,7 +6,7 @@ RSpec.describe Actual do
   context ".subtract_expenditure" do
     let!(:output){ run_budget_with_input("2000", "y", "Food", "100", "y", "1", "Maffiaoza's", "20") }
     it "should subtract the actual from the bank balance" do
-      expect(Bank.last.balance).to eql 1980
+      expect(Bank.last.balance).to eql 198000
     end
 
   end

@@ -7,15 +7,15 @@ RSpec.describe "Adding transactions and amounts", :integration do
     end
     it "should save the record accurately" do
       expect(Actual.last.name).to include("Jets")
-      expect(Actual.last.amount).to eql 15
+      expect(Actual.last.amount).to eql 1500
       expect(Actual.last.goal_id).to eql Goal.last.id
     end
     it "should print a success message with the correct remaining balance" do
-      expect(output).to include("Maffiaoza's has been added with an amount of $20. Your remaining balance for this category is $80.")
+      expect(output).to include("Maffiaoza's has been added with an amount of $20.00. Your remaining balance for this category is $80.00.")
     end
     it "should correctly update goal and bank balances" do
-      expect(Goal.last.amount).to eql 65
-      expect(Bank.last.balance).to eql 965
+      expect(Goal.last.amount).to eql 6500
+      expect(Bank.last.balance).to eql 96500
     end
   end
 

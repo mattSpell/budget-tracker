@@ -6,12 +6,13 @@ class BankController
     if command == "l"
       Router.navigate_goals_menu
     else
-      unless /\A[+-]?\d+\Z/.match command
+      unless /[-+]?[0-9]*\.?[0-9]+/.match command
         puts "Amount must be numbers"
         exit
       end
+      command = Actual.convert_to_cents(command.to_f)
       bank = Bank.create(balance: command)
-      puts "Your new account balance is #{bank.balance}"
+      puts "Your new account balance is $#{Actual.convert_to_dollars(bank.balance)}"
       Router.navigate_goals_menu
     end
   end

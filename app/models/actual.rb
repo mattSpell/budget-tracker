@@ -15,4 +15,14 @@ class Actual < ActiveRecord::Base
     Bank.last.update(balance: new_total)
   end
 
+  def self.convert_to_cents(amount)
+    amount *= 100
+    amount
+  end
+
+  def self.convert_to_dollars(amount)
+    amount /= 100.0
+    '%.2f' % amount
+  end
+
 end

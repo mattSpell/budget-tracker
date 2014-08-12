@@ -7,11 +7,11 @@ class GoalsController
     if amount == ""
       puts "Amount can't be blank"
     end
-    goal = Goal.create(name: name, amount: amount.to_i, bank_id: Bank.last.id)
+    goal = Goal.create(name: name, amount: Actual.convert_to_cents(amount.to_f), bank_id: Bank.last.id)
     if goal.new_record?
       puts goal.errors.full_messages
     else
-      puts "The #{goal.name} category has been added with an amount of $#{goal.amount}."
+      puts "The #{goal.name} category has been added with an amount of $#{Actual.convert_to_dollars(goal.amount)}."
       Router.navigate_actuals_menu
     end
   end
@@ -22,7 +22,7 @@ class GoalsController
     puts "=============="
     goals = GoalsController.allgoals
     goals.each_with_index do |goal, index|
-      puts "#{index + 1}. #{goal.name} $#{goal.amount}"
+      puts "#{index + 1}. #{goal.name} $#{Actual.convert_to_dollars(goal.amount)}"
     end
     puts "Type the goal number to view it."
     command = clean_gets
@@ -38,14 +38,14 @@ class GoalsController
     if goal.nil?
       puts "Sorry, #{goal_number} doesn't exist."
     else
-      puts "GOAL: #{goal.name} AMOUNT: #{goal.amount}"
+      puts "GOAL: #{goal.name} AMOUNT: #{Actual.convert_to_dollars(goal.amount)}"
     end
     puts "============================="
     puts "Transacion List For This Goal"
     puts "============================="
     transactions = Actual.where({goal_id: goal.id})
     transactions.each_with_index do |actual, index|
-      puts "#{index + 1}. #{actual.name} $#{actual.amount}"
+      puts "#{index + 1}. #{actual.name} $#{Actual.convert_to_dollars(actual.amount)}"
     end
     puts "Would you like to add a transaction? (y)es or (n)o to view goals."
     command = clean_gets
