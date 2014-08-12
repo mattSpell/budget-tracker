@@ -50,7 +50,7 @@ class GoalsController
     puts "Would you like to add a transaction? (y)es or (n)o to view goals."
     command = clean_gets
     if command == "y"
-      ActualsController.add(goal)
+      ActualsController.add(goal_number)
     else
       Router.navigate_goals_menu
     end

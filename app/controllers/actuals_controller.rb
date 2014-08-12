@@ -11,24 +11,9 @@ class ActualsController
     if actual.new_record?
       puts actual.errors.full_messages
     else
-      new_balance = Actual.subtract_expenditure(amount.to_i)
+      new_balance = Actual.subtract_expenditure(amount.to_i, goal_num)
       Actual.update_bank_balance(amount.to_i)
-      puts "#{actual.name} has been added with an amount of $#{actual.amount}. Your remaining balance for #{Goal.last.name} is $#{new_balance}."
+      puts "#{actual.name} has been added with an amount of $#{actual.amount}. Your remaining balance for this category is $#{new_balance}."
     end
-  end
-
-  def self.list
-    puts "================"
-    puts "Transaction List"
-    puts "================"
-    transactions = all_actuals
-    transactions.each_with_index do |actual, index|
-      puts "#{index + 1}. #{actual.name} $#{actual.amount}"
-    end
-    Router.navigate_goals_menu
-  end
-
-  def all_actuals
-    @actuals ||= Actual.all
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140811110700) do
+ActiveRecord::Schema.define(version: 20140811192000) do
 
   create_table "actuals", force: true do |t|
     t.string  "name"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20140811110700) do
     t.string  "name"
     t.integer "amount"
     t.integer "bank_id"
-    t.integer "actual_id"
   end
 
 end

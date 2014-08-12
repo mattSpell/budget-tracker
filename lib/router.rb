@@ -13,10 +13,17 @@ class Router
   end
 
   def self.navigate_actuals_menu
-    puts "Would you like to add a transaction? (y)es or (n)o to view a list of your transactions for this goal. You can also view your (g)oals."
+    puts "Would you like to add a transaction? (y)es or you can view your (g)oals."
     command = clean_gets
     case command
     when "y"
+      puts "=============="
+      puts "  Goal List"
+      puts "=============="
+      goals = GoalsController.allgoals
+      goals.each_with_index do |goal, index|
+        puts "#{index + 1}. #{goal.name} $#{goal.amount}"
+      end
       puts "What is the number of the budget category that this transaction belongs to?"
       response = clean_gets
       if /\A[+-]?\d+\Z/.match response
@@ -24,8 +31,6 @@ class Router
       else
         puts "I don't know the #{response} command."
       end
-    when "n"
-      ActualsController.list
     when "g"
       Router.navigate_goals_menu
     else

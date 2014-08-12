@@ -2,10 +2,10 @@ class Actual < ActiveRecord::Base
   validates_presence_of :name, :amount
   belongs_to :goal
 
-  def self.subtract_expenditure(amount)
-    current_goal = Goal.last.amount
-    total = current_goal - amount
-    Goal.last.update(amount: total)
+  def self.subtract_expenditure(amount, goal_num)
+    current_goal = Goal.where({id: goal_num}).first
+    total = current_goal.amount - amount
+    current_goal.update(amount: total)
     return total
   end
 

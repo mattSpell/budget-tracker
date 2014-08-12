@@ -9,7 +9,3 @@ Acceptance Criteria: Asks you what your goal is for a specific category for the 
 Acceptance Criteria: Asks you if you want to make a credit, what category it's in and how much. It then displays your remaining balance for that category goal for the month.
 5. As a user that has entered my income, budget goals and most recent expenditure I want to see what I have left in that particular category and in the overall monthly budget.
 Acceptance Criteria: It asks you which goal you want to view and prints the total you have left for the month.
-
-Bank
-Goal
-Actual
